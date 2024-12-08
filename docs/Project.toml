@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+StatisticalManifolds = "2d59fa81-9b3b-42d2-bf16-c012499602ea"
