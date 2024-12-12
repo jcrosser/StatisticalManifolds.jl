@@ -1,3 +1,9 @@
+### Numerical implementations
+function dKL() end
+
+
+### Special case implementation
+
 function DSKL_Gauss(means1,covs1,means2,covs2)
     _,n=size(means1)
     C1 = ReconstructCov(covs1,n)
