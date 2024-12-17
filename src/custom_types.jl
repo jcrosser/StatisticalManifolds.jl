@@ -2,7 +2,8 @@
 ## Abstract types
 
 
-## Create concrete instances of custom types
+## Create concrete instances of custom types]
+struct AmariChentsovTensor end
 struct StatisticalManifold{T} <:AbstractDecoratorManifold{ℝ}
     C::AmariChentsovTensor{T}
 end
