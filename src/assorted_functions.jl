@@ -1,4 +1,4 @@
-function TsallisLog(x<:Number;p::Probability)
+function TsallisLog(x::Number;p::Probability)
     if p == 1.0
         y = log(x)
     else

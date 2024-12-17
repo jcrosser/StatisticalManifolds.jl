@@ -11,7 +11,7 @@ function symmKL_divergence(d1::T,d2::T;kwargs...) where {T<:Distribution}
     div = expectation(integrand1,d1;kwargs...) + expectation(integrand2,d2;kwargs...)
     return div
 end
-function TsallisKL_divergence(d1::T,d2::T;q<:AbstractFloat=1,kwargs...) where {T<:Distribution} 
+function TsallisKL_divergence(d1::T,d2::T;q::AbstractFloat=1,kwargs...) where {T<:Distribution} 
     P(x) = pdf(d1,x);Q(x) = pdf(d2,x);
     integrand = TsallisLog(P/Q,Probability(q));
     div = expectation(integrand,d1;kwargs...)
