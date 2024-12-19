@@ -1,5 +1,4 @@
-include("custom_types.jl")
-function TsallisLog(x::Number;p::Probability{T})
+function TsallisLog(x::Number;p::Probability)
     if p == 1.0
         y = log(x)
     else
