@@ -1,20 +1,18 @@
 ### Declare custom types
 ## Abstract types
+abstract type AbstractStatisticalManifold{ℝ} <: AbstractDecoratorManifold{ℝ} end
 
-
-## Create concrete instances of custom types]
-struct AmariChentsovTensor end
-struct StatisticalManifold{T} <:AbstractDecoratorManifold{ℝ}
-    C::AmariChentsovTensor{T}
+function active_traits(f,::AbstractStatisticalManifold,args...)
+    return merge_traits(IsEmbeddedManifold(),IsDefaultMetric(FisherRaoMetric()))
 end
-struct InformationManifold <:AbstractStatisticalManifold end
+## Create concrete instances of custom types]
+struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
+    model
+    hypermodel
+    StatisticalManifold(x,y) = (x >:Distribution)&(y >:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y)
+end
 
-
-
-
-
-
-
+ 
 struct Probability{T<:AbstractFloat} <: AbstractFloat 
     x::T
     function Probability(x::Number)

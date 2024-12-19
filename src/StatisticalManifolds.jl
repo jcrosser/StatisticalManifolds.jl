@@ -12,8 +12,18 @@ using MultivariateStats ## Util dependency for PCA/MDS
 ### Include all Pkg files
 include("divergences.jl");include("assorted_functions.jl");include("array_functions.jl");
 include("custom_types.jl");include("custom_traits.jl")
-### Export user functions
-
+### Export types and traits
+export StatisticalManifold, AbstractStatisticalManifold, Probability
+### Export divergence functions
+export TsallisKL_divergence,
+    KL_divergence,
+    symmKL_divergence,
+    Renyi_divergence,
+    JS_divergence,
+    Bregman_divergence
+### Export other functions for external use
+export TsallisLog,
+    expectation
 ### Initialize code 
 function __init__()
     
