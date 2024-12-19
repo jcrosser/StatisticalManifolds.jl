@@ -12,7 +12,7 @@ StatsModels = "3eaba693-59b7-5ba5-a881-562e759f1c8d"
 [compat]
 Distributions = "0.25.114"
 Integrals = "4.5.0"
-LinearAlgebra = "1.10"
+LinearAlgebra = "1.7.3"
 StatsModels = "0.7.4"
 julia = "1.10"
 

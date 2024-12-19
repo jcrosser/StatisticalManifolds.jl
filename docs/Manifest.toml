@@ -209,7 +209,7 @@ uuid = "6462fe0b-24de-5631-8697-dd941f90decc"
 [[deps.StatisticalManifolds]]
 path = ".."
 uuid = "2d59fa81-9b3b-42d2-bf16-c012499602ea"
-version = "0.1.0-DEV"
+version = "0.1.0"
 
 [[deps.TOML]]
 deps = ["Dates"]
