@@ -1,5 +1,6 @@
 __precompile__()
 module StatisticalManifolds
+
 ### Load Major Dependencies
 using Manifolds
 using Distributions, LinearAlgebra, StatsModels#, StatsBase ##Core Utils dependencies
