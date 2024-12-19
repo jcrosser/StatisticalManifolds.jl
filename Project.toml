@@ -5,12 +5,17 @@ version = "0.1.0-DEV"
 
 [deps]
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 Integrals = "de52edbc-65ea-441a-8357-d3a637375a31"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+Manifolds = "1cead3c2-87b3-11e9-0ccd-23c62b72b94e"
+MultivariateStats = "6f286f6a-111f-5878-ab1e-185364afe411"
+Richardson = "708f8203-808e-40c0-ba2d-98a6953ed40d"
 StatsModels = "3eaba693-59b7-5ba5-a881-562e759f1c8d"
 
 [compat]
 Distributions = "0.25.114"
+ForwardDiff = "0.10.38"
 Integrals = "4.5.0"
 LinearAlgebra = "1.7.3"
 StatsModels = "0.7.4"
