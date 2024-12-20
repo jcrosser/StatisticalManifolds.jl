@@ -11,8 +11,8 @@ using MultivariateStats ## Util dependency for PCA/MDS
 #import
 
 ### Include all Pkg files
-include("divergences.jl");include("array_functions.jl");
-include("custom_types.jl");include("custom_traits.jl");#include("assorted_functions.jl")
+include("divergences.jl");include("array_functions.jl");include("expectation.jl")
+include("custom_types.jl");include("custom_traits.jl");include("assorted_functions.jl")
 ### Export types and traits
 export StatisticalManifold, AbstractStatisticalManifold, Probability
 ### Export divergence functions
