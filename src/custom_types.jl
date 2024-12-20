@@ -9,7 +9,7 @@ end
 struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
     model
     hypermodel
-    StatManifold2(x,y) = (x >:Distribution)&(y >:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y)
+    StatisticalManifold(x,y) = (x >:Distribution)&(y >:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y)
 end
 
  
