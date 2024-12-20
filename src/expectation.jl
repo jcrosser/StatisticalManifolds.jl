@@ -1,5 +1,5 @@
 ##### Dispatching function
-expectation(f::function,d::T;kwargs...) where {T} = expectation(supportstyle(T),f,d;kwargs...)
+expectation(f::Function,d::T;kwargs...) where {T} = expectation(supportstyle(T),f,d;kwargs...)
 ### Continuous distributions
 function expectation(::Union{IsBounded,IsUnbounded},f,d;solver=HCubatureJL(),kwargs...)
     g = (x,p) -> f(x)*pdf(d,x)
