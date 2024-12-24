@@ -9,9 +9,9 @@ struct IsCountable <: SupportStyle end
 struct IsUncountable <: SupportStyle end
 
 ## Implementation
-supportstyle(d::T) where {T} = supportstyle(T,d)
-supportstyle(::Type,d) = IsNonParametric()
-function supportstyle(::ContinuousDistribution,d)
+supportstyle(d::T) where {T} = _supportstyle(typeof(d),d)
+#_supportstyle(::Type,d) = undef
+function _supportstyle(::Type{T},d::T) where {T<:ContinuousDistribution}
     domain = extrema(d)
     if any(x->abs(x) == Inf,domain[1])||any(x->abs(x) == Inf,domain[2])
         out = IsUnbounded()
@@ -19,7 +19,7 @@ function supportstyle(::ContinuousDistribution,d)
         out = IsBounded()
     end
 end 
-supportstyle(::CountablyDiscreteDistribution,d) = IsCountable()
-supportstyle(::UncountablyDiscreteDistribution,d) = IsUncountable()
+_supportstyle(::Type{T},d) where {T<:CountablyDiscreteDistribution} = IsCountable()
+_supportstyle(::Type{T},d) where {T<:UncountablyDiscreteDistribution} = IsUncountable()
 
 

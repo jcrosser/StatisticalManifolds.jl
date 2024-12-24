@@ -8,7 +8,8 @@ using Integrals, Richardson, ForwardDiff  ## Method Util dependencies for expect
 using MultivariateStats ## Util dependency for PCA/MDS
 
 ### Import Minor Dependencies
-#import
+import Distributions:
+    ContinuousDistribution
 
 ### Include all Pkg files
 include("divergences.jl");include("array_functions.jl");include("expectation.jl")
@@ -24,7 +25,8 @@ export TsallisKL_divergence,
     Bregman_divergence
 ### Export other functions for external use
 export TsallisLog,
-    expectation
+    expectation,
+    supportstyle
 ### Initialize code 
 function __init__()
     
