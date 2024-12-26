@@ -10,7 +10,7 @@ struct IsUncountable <: SupportStyle end
 
 ## Trait ID
 
-function SupportStyle(::Type{<:ContinuousDistribution})
+function SupportStyle(::Type{<:ContinuousDistribution},d)
     domain = extrema(d)
     if any(x->abs(x) == Inf,domain[1])||any(x->abs(x) == Inf,domain[2])
         out = IsUnbounded()
@@ -18,8 +18,8 @@ function SupportStyle(::Type{<:ContinuousDistribution})
         out = IsBounded()
     end
 end
-SupportStyle(::Type{<:CountablyDiscreteDistribution}) = IsCountable()
-SupportStyle(::Type{<:UncountablyDiscreteDistribution}) = IsUncountable()
+SupportStyle(::Type{<:CountablyDiscreteDistribution},d) = IsCountable()
+SupportStyle(::Type{<:UncountablyDiscreteDistribution},d) = IsUncountable()
 #SupportStyle(::Type) = IsBounded()
 ## Implementation
 

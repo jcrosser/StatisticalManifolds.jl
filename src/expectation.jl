@@ -1,6 +1,7 @@
 ##### Dispatching function
-expectation(f::Function,d::T;kwargs...) where {T} = _expectation(SupportStyle(typeof(d)),f,d;kwargs...)
-### Continuous distributions
+expectation(f::Function,d::T;kwargs...) where {T} = _expectation(SupportStyle(typeof(d),d),f,d;kwargs...)
+
+### Implementations
 function _expectation(::Union{IsBounded,IsUnbounded},f,d;solver=HCubatureJL(),kwargs...)
     g = (x,p) -> f(x)*pdf(d,x)
     domain = extrema(d)
@@ -8,8 +9,6 @@ function _expectation(::Union{IsBounded,IsUnbounded},f,d;solver=HCubatureJL(),kw
     expect = solve(problem,solver;kwargs...)
     return expect.u
 end
-
-### Discrete distributionsn
 function _expectation(::IsCountable,f,d;kwargs...)
     domain = support(d)
     expect = sum([f(i)*pdf(d,i) for i in domain])

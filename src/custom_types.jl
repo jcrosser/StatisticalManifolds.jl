@@ -31,7 +31,10 @@ const CountablyDiscreteDistribution = Union{
 const UncountablyDiscreteDistribution = Union{
     Geometric,NegativeBinomial,Poisson,Skellam
 }
-
+const PDFDistribution = Union{UnivariateDistribution,MatrixDistribution,
+    UnivariateMixture,MultivariateMixture
+}
+const LogLikelihoodDistribution = MultivariateDistribution
 ### Conversion functions
 function (::Type{T})(x::Probability) where {T<:AbstractFloat}
     return convert(T,x.x)
