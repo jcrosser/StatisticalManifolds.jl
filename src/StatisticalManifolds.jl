@@ -24,7 +24,8 @@ import Distributions:
 #import Richardson:
 
 ### Include all Pkg files
-include("divergences.jl");include("array_functions.jl");include("custom_types.jl");include("custom_traits.jl");include("assorted_functions.jl");include("expectation.jl")
+include("divergences.jl");include("array_functions.jl");include("custom_types.jl");include("custom_traits.jl");
+include("assorted_functions.jl");include("expectation.jl");include("metrics.jl");
 ### Export types and traits
 export StatisticalManifold, AbstractStatisticalManifold, Probability
 ### Export divergence functions
