@@ -1,18 +1,27 @@
 ### Declare custom types
 ## Abstract types
 abstract type AbstractStatisticalManifold{ℝ} <: AbstractDecoratorManifold{ℝ} end
+abstract type AbstractStatisticalModel <: Distribution end
 
 function active_traits(f,::AbstractStatisticalManifold,args...)
     return merge_traits(IsEmbeddedManifold(),IsDefaultMetric(FisherRaoMetric()))
 end
 ## Create concrete instances of custom types]
-struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
-    model
-    hypermodel
-    StatisticalManifold(x,y) = (x >:Distribution)&(y >:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y)
+struct StatisticalModel <: AbstractStatisticalModel
+    callable_distribution::Function
+    natural_parameter_manifold::NaturalParametersManifold
+    parameterdimension::Int
+    nullarg 
+    StatisticalModel(x,y,z) = !(x(z) <:Distribution) ? error("Model function evaluated at the null argument should be an object of type <:Distribution") : new(x,y,z)
 end
 
- 
+struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
+    model::StatisticalModel
+    hypermodel::Distribution
+    parametermap
+    StatisticalManifold(x,y,z) = !(x <:Distribution) || !(y <:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y,z)
+end
+
 struct Probability{T<:AbstractFloat} <: AbstractFloat 
     x::T
     function Probability(x::Number)
@@ -31,8 +40,8 @@ const CountablyDiscreteDistribution = Union{
 const UncountablyDiscreteDistribution = Union{
     Geometric,NegativeBinomial,Poisson,Skellam
 }
-const PDFDistribution = Union{UnivariateDistribution,MatrixDistribution,
-    UnivariateMixture,MultivariateMixture
+const PDFDistribution = Union{
+    UnivariateDistribution,MatrixDistribution,UnivariateMixture,MultivariateMixture
 }
 const LogLikelihoodDistribution = MultivariateDistribution
 ### Conversion functions
