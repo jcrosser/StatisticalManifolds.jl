@@ -1,7 +1,7 @@
 ### Declare custom types
 ## Abstract types
 abstract type AbstractStatisticalManifold{ℝ} <: AbstractDecoratorManifold{ℝ} end
-abstract type AbstractStatisticalModel <: Distribution end
+abstract type AbstractStatisticalModel end#<: Distribution end
 
 function active_traits(f,::AbstractStatisticalManifold,args...)
     return merge_traits(IsEmbeddedManifold(),IsDefaultMetric(FisherRaoMetric()))
@@ -9,17 +9,17 @@ end
 ## Create concrete instances of custom types]
 struct StatisticalModel <: AbstractStatisticalModel
     callable_distribution::Function
-    natural_parameter_manifold::NaturalParametersManifold
+    natural_parameter_manifold::AbstractManifold
     parameterdimension::Int
     nullarg 
-    StatisticalModel(x,y,z) = !(x(z) <:Distribution) ? error("Model function evaluated at the null argument should be an object of type <:Distribution") : new(x,y,z)
+    StatisticalModel(D,M,pd,N) = !(typeof(D(N)) <:Distribution) ? error("Model function evaluated at the null argument should be an object of type <:Distribution") : new(D,M,pd,N)
 end
 
 struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
     model::StatisticalModel
     hypermodel::Distribution
     parametermap
-    StatisticalManifold(x,y,z) = !(x <:Distribution) || !(y <:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y,z)
+    StatisticalManifold(x,y,z) = !(x <:StatisticalModel) || !(y <:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y,z)
 end
 
 struct Probability{T<:AbstractFloat} <: AbstractFloat 
@@ -31,6 +31,12 @@ struct Probability{T<:AbstractFloat} <: AbstractFloat
         return new{typeof(x)}(x)
     end
 end
+
+### Outer constructor methods
+StatisticalModel(D::Function,M::AbstractManifold,nullarg) = StatisticalModel(D,M,length(nullarg),nullarg)
+
+
+
 
 ### New Alias for structures in dependencies
 const CountablyDiscreteDistribution = Union{
