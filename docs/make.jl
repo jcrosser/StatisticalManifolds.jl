@@ -1,3 +1,7 @@
+#!/usr/bin/env julia
+#
+#
+
 using StatisticalManifolds
 using Documenter
 
