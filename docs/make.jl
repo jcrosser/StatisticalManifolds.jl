@@ -33,7 +33,7 @@ makedocs(;
     #repo="https://github.com/jcrosser/StatisticalManifolds.jl/blob/{commit}{path}#{line}",
     sitename="StatisticalManifolds.jl",
     format=Documenter.HTML(; prettyurls=get(ENV, "CI", "false") == "true", assets=String[]),
-    pages=["Home" => "index.md"],
+    pages=["Home" => "index.md", "Literature" => "references.md"],
     plugins=[bib, links],
 )
 
