@@ -37,6 +37,9 @@ StatisticalModel(D::Function,M::AbstractManifold,nullarg) = StatisticalModel(D,M
 
 
 
+=======
+StatisticalModel(D::Function, M::AbstractManifold) = StatisticalModel(D, M, manifold_dimension(M))
+>>>>>>> Stashed changes
 
 ### New Alias for structures in dependencies
 const CountablyDiscreteDistribution = Union{
