@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         julia-version: ["lts", "1", "pre"]
-        os: [ubuntu-latest, macOS-latest, windows]
+        os: [ubuntu-latest, macOS-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v2
