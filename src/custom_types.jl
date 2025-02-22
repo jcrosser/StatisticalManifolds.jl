@@ -11,15 +11,22 @@ struct StatisticalModel <: AbstractStatisticalModel
     callable_distribution::Function
     natural_parameter_manifold::AbstractManifold
     parameterdimension::Int
-    nullarg 
-    StatisticalModel(D,M,pd,N) = !(typeof(D(N)) <:Distribution) ? error("Model function evaluated at the null argument should be an object of type <:Distribution") : new(D,M,pd,N)
+    function StatisticalModel(D, M, pd)
+        return !(typeof(D()) <: Distribution) ?
+               error(
+            "Model function evaluated at the null argument should be an object of type <:Distribution",
+        ) : new(D, M, pd)
+    end
 end
 
 struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
     model::StatisticalModel
     hypermodel::Distribution
     parametermap
-    StatisticalManifold(x,y,z) = !(x <:StatisticalModel) || !(y <:Distribution) ? error("Arguments should be objects of type <:Distribution") : new(x,y,z)
+    function StatisticalManifold(x, y, z)
+        return !(typeof(x) <: StatisticalModel) || !(typeof(y) <: Distribution) ?
+               error("Arguments should be objects of type <:Distribution") : new(x, y, z)
+    end
 end
 
 struct Probability{T<:AbstractFloat} <: AbstractFloat 
@@ -33,6 +40,9 @@ struct Probability{T<:AbstractFloat} <: AbstractFloat
 end
 
 ### Outer constructor methods
+StatisticalModel(D::Function,M::AbstractManifold) = StatisticalModel(D,M,manifold_dimension(M))
+
+
 
 StatisticalModel(D::Function, M::AbstractManifold) = StatisticalModel(D, M, manifold_dimension(M))
 
