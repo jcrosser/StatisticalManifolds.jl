@@ -20,9 +20,6 @@ function _expectation(::Union{IsBounded,IsUnbounded},f,d;solver=HCubatureJL(),kw
     domain = extrema(d)
     problem = IntegralProblem(g,domain)
     expect = solve(problem,solver;kwargs...)
-    println(domain)
-    println(problem)
-    println(expect)
     return expect.u
 end
 function _expectation(::IsCountable,f,d;kwargs...)

@@ -60,3 +60,13 @@ function changeVariable(config::Configuration{N,V,P,O,T}, integrand, inplace,
     end
     # return
 end
+
+
+
+
+function KL_testing(d1::T,d2::T;kwargs...) where {T<:Distribution} 
+    P(x) = pdf(d1,x);Q(x) = pdf(d2,x);
+    integrand(x) = Float64(log(10,P(big(x))/Q(big(x))));
+    div = expectation(x->integrand(x),d1;kwargs...)
+    return div
+end

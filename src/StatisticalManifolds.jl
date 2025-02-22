@@ -43,7 +43,8 @@ export TsallisKL,
     symmKL,
     Renyi,
     JS,
-    Bregman
+    Bregman,
+    KL_testing
 ### Export other functions for external use
 export TsallisLog,
     expectation,
