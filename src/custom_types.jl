@@ -18,16 +18,32 @@ struct StatisticalModel <: AbstractStatisticalModel
         ) : new(D, M, pd)
     end
 end
+### Outer constructor methods
+StatisticalModel(D::Function,M::AbstractManifold) = StatisticalModel(D,M,manifold_dimension(M))
 
-struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
+@kwdef struct StatisticalManifold <: AbstractStatisticalManifold{ℝ}
     model::StatisticalModel
     hypermodel::Distribution
     parametermap
-    function StatisticalManifold(x, y, z)
+    embedded::Bool = false
+    function StatisticalManifold(x, y, z, E)
         return !(typeof(x) <: StatisticalModel) || !(typeof(y) <: Distribution) ?
-               error("Arguments should be objects of type <:Distribution") : new(x, y, z)
+               error("Arguments should be objects of type <:Distribution") : new(x, y, z, E)
     end
 end
+#Outer constructor methods
+
+
+
+
+
+
+
+
+
+
+
+
 
 struct Probability{T<:AbstractFloat} <: AbstractFloat 
     x::T
@@ -38,10 +54,6 @@ struct Probability{T<:AbstractFloat} <: AbstractFloat
         return new{typeof(x)}(x)
     end
 end
-
-### Outer constructor methods
-StatisticalModel(D::Function,M::AbstractManifold) = StatisticalModel(D,M,manifold_dimension(M))
-
 
 
 
