@@ -34,15 +34,16 @@ import Distributions:
 ### Include all Pkg files
 include("divergences.jl");include("array_functions.jl");include("custom_types.jl");include("custom_traits.jl");
 include("assorted_functions.jl");include("expectation.jl");include("metrics.jl");include("manifoldsbase_implementations.jl");
+include("scratch.jl")
 ### Export types and traits
 export StatisticalManifold, AbstractStatisticalManifold, Probability, AbstractStatisticalModel, StatisticalModel
 ### Export divergence functions
-export TsallisKL_divergence,
-    KL_divergence,
-    symmKL_divergence,
-    Renyi_divergence,
-    JS_divergence,
-    Bregman_divergence
+export TsallisKL,
+    KL,
+    symmKL,
+    Renyi,
+    JS,
+    Bregman
 ### Export other functions for external use
 export TsallisLog,
     expectation,

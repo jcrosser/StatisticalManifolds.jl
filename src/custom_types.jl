@@ -56,6 +56,7 @@ struct Probability{T<:AbstractFloat} <: AbstractFloat
 end
 
 
+StatisticalModel(D::Function, M::AbstractManifold) = StatisticalModel(D, M, manifold_dimension(M))
 
 ### New Alias for structures in dependencies
 const CountablyDiscreteDistribution = Union{
